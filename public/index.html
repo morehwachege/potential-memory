@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        // microphone access
+        navigator.mediaDevices.getUserMedia( {audio:true }).then((stream) => {
+            if(!MediaRecorder.isTypeSupported('audio/webm')) {
+                return alert('Browser not supported')
+            }
+            const mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'})
+
+            mediaRecorder.addEventListener('dataavailable', (event) => {
+                if (event.data.size > 0){
+                    socket.emit('microphone-stream', event.data)
+                }
+            })
+            mediaRecorder.start(1000)
+        })
+    </script>
+</body>
+</html>
