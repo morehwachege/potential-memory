@@ -32,6 +32,22 @@ nav{
     font-weight: 600;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.navbar h2 a{
+    text-decoration: none;
+    color: white;
+}
+.navbar h2 a span{
+    color: blue;
+    color: linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(0,0,255,1) 50%, rgba(255,255,255,1) 100%);
+}
+.navbar h2 a:hover{
+    color: blue;
+    transition: .2s ease-in;
+}
+.navbar h2 a:hover span{
+    color: white;
+    transition: .2s ease-in;
+}
 .navbar li{
     list-style: none;
     padding: 0 20px 0 20px;
@@ -39,12 +55,28 @@ nav{
     font-weight: 600;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.navbar li a{
+    text-decoration: none; 
+}
+.navbar li a:hover{
+    color: white;
+    transition: .2s ease-in;
+}
 .dome{
     height: 100vh;
+    /* width: 100vw; */
     color: white;
     padding-top: 10vh;
-    display: flex;
 }
+.dome .hero{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: capitalize;
+    text-align: center;
+    padding-top: 5vh;
+}
+
+
+
 footer{
     color: white;
     text-align: center;
