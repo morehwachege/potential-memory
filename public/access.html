@@ -22,7 +22,19 @@
         </nav>
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
-           
+           <center>
+            <div class="entry">
+                <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+              <!-- <h1>{{title}}</h1> -->
+               <textarea name="editor1"></textarea>
+                 <script>
+                     CKEDITOR.replace( 'editor1' );
+                 </script>
+             </div>
+
+
+
+           </center>
         </div>
         <footer>
             <h4>&copy; Muriithi Gakuru</h4>
@@ -30,7 +42,7 @@
     </main>
     
     <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script>
+    <!-- <script>
        navigator.mediaDevices.getUserMedia({ audio:true}).then((stream) =>{
            // console.log(stream);
            const mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'})
@@ -46,9 +58,10 @@
                const received = JSON.parse(message.data)
                const transcript = received.channel.alternatives[0].transcript
                console.log(transcript)
+               // document.write(transcript)
            }
        })
-    </script>
+    </script> -->
 </body>
 
 </html>

@@ -73,6 +73,12 @@ nav{
     text-transform: capitalize;
     text-align: center;
     padding-top: 5vh;
+    padding-bottom: 10vh;
+}
+.entry{
+    /* padding-left: 100px;
+    padding-right: 100px; */
+    width: 50%;
 }
 
 
