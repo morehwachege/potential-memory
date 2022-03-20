@@ -1,3 +1,54 @@
-body{
-    background-color: blue;
+*{
+    margin: 0;
+    padding: 0;
 }
+body{
+    background-color: white;
+    background-image: url(../images/quinton-coetzee-xcweYgakbRo-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}
+main{
+    background-color: rgba(0, 0, 2, .5)
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 10vh;
+    background-color: #050505;
+    color: white;
+    position: fixed;
+}
+.navbar{
+    display: flex;
+    padding: 0 50px 0 50px;
+    height: 10vh;
+    align-items: center;
+}
+.navbar h2{
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.navbar li{
+    list-style: none;
+    padding: 0 20px 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.dome{
+    height: 100vh;
+    color: white;
+    padding-top: 10vh;
+    display: flex;
+}
+footer{
+    color: white;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
