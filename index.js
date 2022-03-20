@@ -11,7 +11,6 @@ const fs = require('fs')
 app.use(express.static('public'));
 const deepgram = new Deepgram(process.env.DG_KEY)
 const deepgramLive = deepgram.transcription.live({ utterances: true })
-console.log(deepgram)
 // Logic
 io.on('connection', (socket) => {
     console.log(`Connected at ${new Date().toISOString()}`);
