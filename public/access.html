@@ -23,10 +23,13 @@
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
            <center>
-            <div class="entry">
+               <div class="entry">
+                <p id="transcripted-text"></p>
                 <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
               <!-- <h1>{{title}}</h1> -->
-               <textarea name="editor1"></textarea>
+               <textarea name="editor1">
+                   <!-- <p id="transcripted-text"></p> -->
+               </textarea>
                  <script>
                      CKEDITOR.replace( 'editor1' );
                  </script>
@@ -42,7 +45,8 @@
     </main>
     
     <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <!-- <script>
+    <script>
+        let moreh = document.getElementById('transcripted-text')
        navigator.mediaDevices.getUserMedia({ audio:true}).then((stream) =>{
            // console.log(stream);
            const mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'})
@@ -58,10 +62,11 @@
                const received = JSON.parse(message.data)
                const transcript = received.channel.alternatives[0].transcript
                console.log(transcript)
+               moreh.innerHTML += transcript
                // document.write(transcript)
            }
        })
-    </script> -->
+    </script>
 </body>
 
 </html>
