@@ -27,8 +27,8 @@
                 <p id="transcripted-text"></p>
                 <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
               <!-- <h1>{{title}}</h1> -->
-               <textarea name="editor1">
-                   <!-- <p id="transcripted-text"></p> -->
+               <textarea name="editor1" class="transcripted-text" >
+                   <!-- <p id="transcripted-text"></p> --> this should be amazing
                </textarea>
                  <script>
                      CKEDITOR.replace( 'editor1' );
@@ -47,6 +47,10 @@
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script>
         let moreh = document.getElementById('transcripted-text')
+        const commands ={
+            paragraph:'</br>'
+        }
+        
        navigator.mediaDevices.getUserMedia({ audio:true}).then((stream) =>{
            // console.log(stream);
            const mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'})
@@ -62,7 +66,11 @@
                const received = JSON.parse(message.data)
                const transcript = received.channel.alternatives[0].transcript
                console.log(transcript)
-               moreh.innerHTML += transcript
+               moreh.innerHTML += transcript + ' '
+               //if (transcript == 'paragraph'){
+                //transcript = commands['paragraph']
+                //}
+               
                // document.write(transcript)
            }
        })
