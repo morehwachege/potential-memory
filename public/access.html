@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="ckeditor/samples/js/sample.js"></script>
+
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
@@ -24,21 +23,33 @@
         </nav>
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
+            <div class="benga">
+                indian mafia
+            </div>
+            <script>
+                var benga = document.querySelector('.benga');
+                benga.innerText = "muriithi gakuru";
+            </script>
+
             <center>
                 <div class="entry">
                     <div class="adjoined-bottom">
                         <div class="grid-container">
                             <div class="grid-width-100">
-                                <div id="editor">
+                                <div id="editor" class="transcripted-text">
                                     <!-- <h1>Hello world!</h1>
                                     <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p> -->
+                                    <!-- <p id="transcripted-text">
+                                        boom
+                                    </p> -->
                                     
                                 </div>
                             </div>
                         </div>
                     </div>
-            
+                    
                 </div>
+                
 
 
 
@@ -50,8 +61,15 @@
     </main>
 
     <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="ckeditor/samples/js/sample.js"></script>
     <script>
-        let moreh = document.getElementById('transcripted-text')
+        initSample();
+    </script>
+    <!-- <script>
+        let moreh = document.getElementsByClassName('transcripted-text')
+        let benga = document.getElementsByClassName('benga')
+        benga.innerHTML = "muriithi gakuru"
         const commands = {
             paragraph: '</br>'
         }
@@ -71,6 +89,7 @@
                 const received = JSON.parse(message.data)
                 const transcript = received.channel.alternatives[0].transcript
                 console.log(transcript)
+                //moreh.innerText += transcript + ' '
                 moreh.innerHTML += transcript + ' '
                 //if (transcript == 'paragraph'){
                 //transcript = commands['paragraph']
@@ -79,9 +98,11 @@
                 // document.write(transcript)
             }
         })
-    </script>
+    </script> -->
+
     <script>
-        initSample();
+        let maich = document.querySelector('.transcripted-text');
+        maich.innerText = 'Yes to the dress'
     </script>
 </body>
 
