@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="ckeditor/samples/js/sample.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
@@ -22,58 +24,64 @@
         </nav>
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
-           <center>
-               <div class="entry">
-                <p id="transcripted-text"></p>
-                <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
-              <!-- <h1>{{title}}</h1> -->
-               <textarea name="editor1" class="transcripted-text" >
-                   <!-- <p id="transcripted-text"></p> --> this should be amazing
-               </textarea>
-                 <script>
-                     CKEDITOR.replace( 'editor1' );
-                 </script>
-             </div>
+            <center>
+                <div class="entry">
+                    <div class="adjoined-bottom">
+                        <div class="grid-container">
+                            <div class="grid-width-100">
+                                <div id="editor">
+                                    <!-- <h1>Hello world!</h1>
+                                    <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
 
 
 
-           </center>
+            </center>
         </div>
         <footer>
             <h4>&copy; Muriithi Gakuru</h4>
         </footer>
     </main>
-    
+
     <!-- <script src="/socket.io/socket.io.js"></script> -->
     <script>
         let moreh = document.getElementById('transcripted-text')
-        const commands ={
-            paragraph:'</br>'
+        const commands = {
+            paragraph: '</br>'
         }
-        
-       navigator.mediaDevices.getUserMedia({ audio:true}).then((stream) =>{
-           // console.log(stream);
-           const mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/webm'})
-           const socket = new WebSocket('wss://api.deepgram.com/v1/listen', ['token', 'cdb248936f67417eb85e2372c6a26d8637b2561b'])
 
-           socket.onopen = () =>{
-               mediaRecorder.addEventListener('dataavailable', event =>{
-                   socket.send(event.data)
-               })
-               mediaRecorder.start(1000)
-           }
-           socket.onmessage = (message) =>{
-               const received = JSON.parse(message.data)
-               const transcript = received.channel.alternatives[0].transcript
-               console.log(transcript)
-               moreh.innerHTML += transcript + ' '
-               //if (transcript == 'paragraph'){
+        navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+            // console.log(stream);
+            const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' })
+            const socket = new WebSocket('wss://api.deepgram.com/v1/listen', ['token', 'cdb248936f67417eb85e2372c6a26d8637b2561b'])
+
+            socket.onopen = () => {
+                mediaRecorder.addEventListener('dataavailable', event => {
+                    socket.send(event.data)
+                })
+                mediaRecorder.start(1000)
+            }
+            socket.onmessage = (message) => {
+                const received = JSON.parse(message.data)
+                const transcript = received.channel.alternatives[0].transcript
+                console.log(transcript)
+                moreh.innerHTML += transcript + ' '
+                //if (transcript == 'paragraph'){
                 //transcript = commands['paragraph']
                 //}
-               
-               // document.write(transcript)
-           }
-       })
+
+                // document.write(transcript)
+            }
+        })
+    </script>
+    <script>
+        initSample();
     </script>
 </body>
 
