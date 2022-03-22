@@ -66,10 +66,9 @@
     <script>
         initSample();
     </script>
-    <!-- <script>
-        let moreh = document.getElementsByClassName('transcripted-text')
-        let benga = document.getElementsByClassName('benga')
-        benga.innerHTML = "muriithi gakuru"
+    <script>
+        let moreh = document.querySelector('.transcripted-text')
+        moreh.innerText += "mafian king wakanda"
         const commands = {
             paragraph: '</br>'
         }
@@ -88,9 +87,10 @@
             socket.onmessage = (message) => {
                 const received = JSON.parse(message.data)
                 const transcript = received.channel.alternatives[0].transcript
+                moreh.innerHTML += transcript + ' '
                 console.log(transcript)
                 //moreh.innerText += transcript + ' '
-                moreh.innerHTML += transcript + ' '
+                
                 //if (transcript == 'paragraph'){
                 //transcript = commands['paragraph']
                 //}
@@ -98,12 +98,8 @@
                 // document.write(transcript)
             }
         })
-    </script> -->
-
-    <script>
-        let maich = document.querySelector('.transcripted-text');
-        maich.innerText = 'Yes to the dress'
     </script>
+
 </body>
 
 </html>
