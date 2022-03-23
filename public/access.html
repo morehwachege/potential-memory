@@ -23,33 +23,20 @@
         </nav>
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
-            <div class="benga">
-                indian mafia
-            </div>
-            <script>
-                var benga = document.querySelector('.benga');
-                benga.innerText = "muriithi gakuru";
-            </script>
-
             <center>
                 <div class="entry">
                     <div class="adjoined-bottom">
                         <div class="grid-container">
                             <div class="grid-width-100">
-                                <div id="editor" class="transcripted-text">
-                                    <!-- <h1>Hello world!</h1>
-                                    <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p> -->
-                                    <!-- <p id="transcripted-text">
-                                        boom
-                                    </p> -->
-                                    
+                                <div id="editor" class="transcripted-text" style="visibility: visible !important; display: block !important">
+                                    <p>Become a winner</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
 
 
 
@@ -67,8 +54,11 @@
         initSample();
     </script>
     <script>
-        let moreh = document.querySelector('.transcripted-text')
-        moreh.innerText += "mafian king wakanda"
+        let moreh = document.querySelector('[iframe]')
+        let test = document.querySelector('.grid-width-100')
+        let element = document.createElement("P");
+        
+        //moreh.innerText += "mafian king wakanda"
         const commands = {
             paragraph: '</br>'
         }
@@ -87,17 +77,20 @@
             socket.onmessage = (message) => {
                 const received = JSON.parse(message.data)
                 const transcript = received.channel.alternatives[0].transcript
-                moreh.innerHTML += transcript + ' '
-                console.log(transcript)
-                //moreh.innerText += transcript + ' '
-                
-                //if (transcript == 'paragraph'){
-                //transcript = commands['paragraph']
-                //}
+                //console.log(moreh.innerText)
+                //console.log(transcript)
+                element.innerHTML = transcript;
 
-                // document.write(transcript)
+
+                // Append the element to the parent element
+                //let indian = moreh.innerHTML +=element;
+                //console.log(moreh.innerHTML)
+                //console.log(moreh.innerHTML= '<p> Killer instinct </p>')
+                console.log(moreh)
+
             }
         })
+        
     </script>
 
 </body>
