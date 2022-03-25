@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
@@ -28,13 +28,16 @@
                     <div class="adjoined-bottom">
                         <div class="grid-container">
                             <div class="grid-width-100">
-                                <div id="editor" class="transcripted-text" style="visibility: visible !important; display: block !important">
+                                <!-- <div id="editor" class="transcripted-text" style="visibility: visible !important; display: block !important">
                                     <p id="tester">this is the moment of morreh</p>
-                                </div>
+                                </div> -->
+                                <textarea name="content" id="editor">
+                                    &lt;p&gt;This is some sample content.&lt;/p&gt;
+                                </textarea>
                             </div>
+                            <button id="submit">Send</button>
                         </div>
                     </div>
-
                 </div>
 
 
@@ -48,23 +51,23 @@
     </main>
 
     <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="ckeditor/samples/js/sample.js"></script>
+
     <script>
-        initSample();
-    </script>
-    <script>
-        //let moreh = document.querySelector('textarea')
-        let test = document.querySelector('#editor')
-        var moreh = CKEDITOR.document.getById( 'editor' );
-        test == moreh;
-        let element = document.createElement("P");
-        let tester = document.getElementById('tester')
-        
-        //moreh.innerText += "mafian king wakanda"
+
+
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        document.querySelector('#submit').addEventListener('click', () => {
+            const editorData = editor.getData();
+        })
         const commands = {
-            paragraph: '</br>'
-        }
+            paragraph: '</br>',
+            }
+
 
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
             // console.log(stream);
@@ -80,21 +83,11 @@
             socket.onmessage = (message) => {
                 const received = JSON.parse(message.data)
                 const transcript = received.channel.alternatives[0].transcript
-                //console.log(moreh.innerText)
-                //console.log(transcript)
-                element.innerHTML = transcript;
-                tester.innerHTML = transcript;
-                console.log(moreh)
-                console.log(test.innerHTML)
-                test.innerText = transcript
-                CKEDITOR.instances[instance_name].insertHtml('<p>Test</p>');
-
-                // Append the element to the parent element
 
 
             }
         })
-        
+
     </script>
 
 </body>

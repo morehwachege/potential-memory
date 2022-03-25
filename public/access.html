@@ -34,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <button onclick="alert(myEditor.getData())"></button>
                 </div>
 
 
@@ -57,9 +57,10 @@
         //let moreh = document.querySelector('textarea')
         let test = document.querySelector('#editor')
         var moreh = CKEDITOR.document.getById( 'editor' );
-        test == moreh;
-        let element = document.createElement("P");
-        let tester = document.getElementById('tester')
+        let myEditor;
+        CKEditor.create(document.querySelector("#editor"))
+                            .then (editor=> {myEditor = editor;})
+                            .catch(error => {console.error(error);});
         
         //moreh.innerText += "mafian king wakanda"
         const commands = {
@@ -83,11 +84,6 @@
                 //console.log(moreh.innerText)
                 //console.log(transcript)
                 element.innerHTML = transcript;
-                tester.innerHTML = transcript;
-                console.log(moreh)
-                console.log(test.innerHTML)
-                test.innerText = transcript
-                CKEDITOR.instances[instance_name].insertHtml('<p>Test</p>');
 
                 // Append the element to the parent element
 
