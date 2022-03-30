@@ -53,15 +53,7 @@
     <script>
         initSample();
     </script>
-    <script>
-        //let moreh = document.querySelector('textarea')
-        let test = document.querySelector('#editor')
-        var moreh = CKEDITOR.document.getById( 'editor' );
-        let myEditor;
-        CKEditor.create(document.querySelector("#editor"))
-                            .then (editor=> {myEditor = editor;})
-                            .catch(error => {console.error(error);});
-        
+    <script>        
         //moreh.innerText += "mafian king wakanda"
         const commands = {
             paragraph: '</br>'
@@ -83,7 +75,8 @@
                 const transcript = received.channel.alternatives[0].transcript
                 //console.log(moreh.innerText)
                 //console.log(transcript)
-                element.innerHTML = transcript;
+                //element.innerHTML = transcript;
+                console.log(transcript)
 
                 // Append the element to the parent element
 

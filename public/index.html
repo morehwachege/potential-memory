@@ -5,40 +5,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <main>
+        <nav>
+            <div class="navbar">
+                <h2 class="logo"><a href="#">Fine <span>Editor</span></a></h2>
+            </div>
+            <div class="navbar">
+                <li class="nav"><a href="docs.html">Docs</a></li>
+                <li class="nav"><a href="#">Instructions</a></li>
+            </div>
+        </nav>
+        <div class="dome">
+            <h2 class="hero">Speak to your microphone to transcribe</h2>
+
+            <p>Text loads here</p>
+            <center>
+                <div class="entry">
+                    <div class="adjoined-bottom">
+                        <div class="grid-container">
+                            <div class="grid-width-100">
+                                <div id="editor" class="transcripted-text"
+                                    style="visibility: visible !important; display: block !important">
+                                    <p id="tester">this is the moment of morreh</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="alert(myEditor.getData())"></button>
+                </div>
 
 
 
-    <script src="/socket.io/socket.io.js"></script>
+
+            </center>
+        </div>
+        <footer>
+            <h4>&copy; Muriithi Gakuru</h4>
+        </footer>
+    </main>
+
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="ckeditor/ckeditor.js"></script>
+    <script src="ckeditor/samples/js/sample.js"></script>
     <script>
-        const socket = io();
-        // microphone access
+        initSample();
+    </script>
+    <script>
+        const DG_ENDPOINT = 'wss://api.deepgram.com/v1/listen'
+
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-            if (!MediaRecorder.isTypeSupported('audio/webm')) {
-                return alert('Browser not supported')
-            }
+            if (!MediaRecorder.isTypeSupported('audio/webm')) return alert('Browser not supported')
             const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' })
 
-            mediaRecorder.addEventListener('dataavailable', (event) => {
-                if (event.data.size > 0) {
-                    socket.emit('microphone-stream', event.data)
+            const socket = new WebSocket(DG_ENDPOINT, ['token', 'cdb248936f67417eb85e2372c6a26d8637b2561b'])
+
+            socket.onopen = () => {
+                mediaRecorder.addEventListener('dataavailable', async (event) => {
+                    if (event.data.size > 0 && socket.readyState == 1) {
+                        socket.send(event.data)
+                    }
+                })
+                mediaRecorder.start(250)
+            }
+
+            socket.onmessage = (message) => {
+                const data = JSON.parse(message.data)
+                //console.log(data)
+
+                const { channel, is_final } = data
+                const transcript = channel.alternatives[0].transcript
+
+                if (transcript && is_final) {
+                    document.querySelector('p').textContent += ' ' + transcript
                 }
-            })
-            mediaRecorder.start(1000)
-        })
-        let transcript = '';
-        deepgramLive.addListener('transcriptReceived', (data) => {
-            const result = JSON.parse(data)
-            const utterance = result.channel.alternatives[0].transcript
-            if (result.is_final && utterance) {
-                transcript += ' ' + utterance
-                console.log(transcript)
             }
         })
     </script>
+
 </body>
 
 </html>
