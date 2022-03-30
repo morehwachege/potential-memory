@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tiny.cloud/1/ukdol3mkxmf1jy5ts4mdg376pygdncv4tmfcbs2b01dc0l6v/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <textarea>
+    Welcome to TinyMCE!
+  </textarea>
+  <script>
+    tinymce.init({
+        selector: 'textarea',     
+    });
+    
+    
+    //get inner element 'col-md-6'
+    function getColMd6(number){
+        var html = "";
+        for(var i = 0; i < number; i++){
+            html += '<div class="col-md-6"></div>';
+        }
+        return html;
+    }
+    
+    //get inner element 'col-md-12'
+    function getColMd12(number){
+        var html = "";
+        for(var i = 0; i < number; i++){
+            html += '<div class="col-md-12"></div>';
+        }
+        return html;
+    }
+    
+    //Last parameter lets you specify extra inner html
+    tinymce.activeEditor.dom.add(tinymce.activeEditor.getBody(), 'div', {class: 'row'}, getColMd6(2));
+    tinymce.activeEditor.dom.add(tinymce.activeEditor.getBody(), 'div', {class: 'row'}, getColMd12(1));
+  </script>
+</body>
+</html>

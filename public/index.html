@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://cdn.tiny.cloud/1/ukdol3mkxmf1jy5ts4mdg376pygdncv4tmfcbs2b01dc0l6v/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
@@ -23,24 +23,23 @@
         </nav>
         <div class="dome">
             <h2 class="hero">Speak to your microphone to transcribe</h2>
-
-            <p>Text loads here</p>
+            <!-- text should load below -->
+            <p>King of wakanda</p>
             <center>
                 <div class="entry">
                     <div class="adjoined-bottom">
                         <div class="grid-container">
                             <div class="grid-width-100">
-                                <div id="editor" class="transcripted-text">
+                                <div id="" class="transcripted-text">
                                     <!-- <p id="tester">this is the moment of morreh</p> -->
+                                    <textarea name="editorial" id="" cols="30" rows="10">
+                                        This is the big day
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
-
             </center>
         </div>
         <footer>
@@ -50,15 +49,14 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
+        let words = 'King of Indiana police'
+
         const socket = io()
         const DG_ENDPOINT = 'wss://api.deepgram.com/v1/listen'
-
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
             if (!MediaRecorder.isTypeSupported('audio/webm')) return alert('Browser not supported')
             const mediaRecorder = new MediaRecorder(stream, { mimeType: 'audio/webm' })
-
             const socket = new WebSocket(DG_ENDPOINT, ['token', 'cdb248936f67417eb85e2372c6a26d8637b2561b'])
-
             socket.onopen = () => {
                 mediaRecorder.addEventListener('dataavailable', async (event) => {
                     if (event.data.size > 0 && socket.readyState == 1) {
@@ -67,21 +65,52 @@
                 })
                 mediaRecorder.start(250)
             }
-
             socket.onmessage = (message) => {
                 const data = JSON.parse(message.data)
                 //console.log(data)
-
                 const { channel, is_final } = data
                 const transcript = channel.alternatives[0].transcript
-
-                if (transcript && is_final) {
+                if(transcript && is_final) {
                     document.querySelector('p').textContent += ' ' + transcript
+                    words += transcript;
+                    //console.log(words);
+                    console.log(document.querySelector('editorial'))
+                
+                    tinymce.init({
+                        selector: 'textarea',
+                        plugins: 'a11ychecker advcode casechange export formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+                        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter pageembed permanentpen table',
+                        toolbar_mode: 'floating',
+                        tinycomments_mode: 'embedded',
+                        tinycomments_author: 'Author name',
+                        width : "700",
+                        height : "500",
+                        setup: function (editor) {
+                            editor.on('init', function (e) {
+                                //editor.setContent(words);
+
+                            });
+                        }
+                    });
                 }
+
+
+                
             }
         })
-    </script>
+        /* 
+            start of tinymce things
+        */
 
+        // Remove a plugin from the default setup.
+        
+        
+          //editor.innerText = words
+
+        /*
+            end of ckeditor things
+        */
+    </script>
 </body>
 
 </html>
