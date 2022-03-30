@@ -5,11 +5,11 @@
 }
 
 
-html{
+/* html{
     font-size: 1.1rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
-}
+} */
 
 .toolbar{
     display:grid;
@@ -45,7 +45,7 @@ html{
 
 
 .editor{
-    width:70vw;
+    width:100vw;
     height: 50vh;
     margin: 2rem;
     padding: 1rem;
@@ -53,6 +53,8 @@ html{
     box-shadow: 0 .1rem .4rem black;
     border: 1px solid black;
     overflow-y: auto;
+    background-color: white;
+    color: black;
 }
 
 .getcontent{

@@ -123,9 +123,11 @@
         </footer>
     </main>
 
+    <script src="boom.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
         let words = 'King of Indiana police'
+        var fineContent = document.querySelector(".editor")
 
         const socket = io()
         const DG_ENDPOINT = 'wss://api.deepgram.com/v1/listen'
@@ -148,7 +150,7 @@
                 const transcript = channel.alternatives[0].transcript
                 if(transcript && is_final) {
                     document.querySelector('p').textContent += ' ' + transcript
-                    words += transcript;
+                    fineContent.textContent += transcript;
                     //console.log(words);
                 }
 
@@ -169,7 +171,6 @@
             end of ckeditor things
         */
     </script>
-    <script src="boom.js"></script>
 </body>
 
 </html>
