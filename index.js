@@ -19,6 +19,5 @@ io.on('connection', (socket) => {
         deepgramLive.send(data)
     })
 })
-
 // Run
 http.listen(3100, console.log(`Started at ${new Date().toISOString()}`))

@@ -30,14 +30,12 @@
                     <div class="adjoined-bottom">
                         <div class="grid-container">
                             <div class="grid-width-100">
-                                <div id="editor" class="transcripted-text"
-                                    style="visibility: visible !important; display: block !important">
-                                    <p id="tester">this is the moment of morreh</p>
+                                <div id="editor" class="transcripted-text">
+                                    <!-- <p id="tester">this is the moment of morreh</p> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button onclick="alert(myEditor.getData())"></button>
                 </div>
 
 
@@ -50,13 +48,9 @@
         </footer>
     </main>
 
-    <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="ckeditor/samples/js/sample.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        initSample();
-    </script>
-    <script>
+        const socket = io()
         const DG_ENDPOINT = 'wss://api.deepgram.com/v1/listen'
 
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
