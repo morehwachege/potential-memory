@@ -32,8 +32,7 @@
                         <div class="grid-container">
                             <div class="grid-width-100">
                                 <!-- start richtext editor here -->
-                                <div class="toolbar">
-    
+                                <div class="toolbar">    
                                     <button class="tool-items fa fa-underline"  onclick="document.execCommand('underline', false, '');" title="underline">
                                     </button>
                                 
@@ -86,9 +85,7 @@
     <script src="assets/js/editor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        let words = 'King of Indiana police'
         var fineContent = document.querySelector(".editor")
-
         const socket = io()
         const DG_ENDPOINT = 'wss://api.deepgram.com/v1/listen'
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
