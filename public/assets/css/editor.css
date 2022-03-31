@@ -1,0 +1,85 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.toolbar{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(20px,40px));
+    background-color: rgb(0, 0, 0) ;
+    color: rgb(231, 231, 231);
+    grid-gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items:center;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.tool-items{
+    background-color: #ffff;
+    padding-top: .6rem;
+    padding-bottom:.6rem;
+    cursor: pointer;
+    color: rgb(27, 26, 26);
+}
+.tool-items:hover{
+    box-shadow: none;
+    background-color: #6b5e5e;
+
+}
+.center{
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+}
+
+
+.editor{
+    width:100vw;
+    height: 50vh;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    border: none !important;
+    overflow-y: auto;
+    background-color: white;
+    color: black;
+    text-align: left;
+}
+
+.btn{
+      padding: .5rem;
+      background-color:blue;
+      margin-right: 1rem;
+      color: #fffffc;
+      letter-spacing: .1rem;
+      font-size: 1rem;
+      border-radius: .2rem;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 .4rem .4rem black;
+      transition: all .2s;
+      width: 80px;
+}
+
+.btn:hover{
+      background-color: transparent;
+      box-shadow: 0 .1rem .1rem black;
+      outline: invert;
+      border: 1px solid blue;
+}
+
+
+
+img{
+    width: 60px;
+    height: 60px;
+    margin-top: .4rem;
+    border-radius: 50rem;
+}
+label {
+    margin-left: 0.04rem;
+    padding-left:.7rem
+}

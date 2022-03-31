@@ -10,7 +10,7 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    max-height: 100vh;
+    min-height: 100vh;
     
 }
 main{
@@ -81,7 +81,7 @@ nav{
 .entry{
     /* padding-left: 100px;
     padding-right: 100px; */
-    width: 50%;
+    width: 80%;
 }
 
 
