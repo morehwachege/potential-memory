@@ -45,4 +45,4 @@ These are credits to external resources and third party components used in this 
 * [Deepgram API](https://deepgram.com)
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[ISC](https://choosealicense.com/licenses/isc/)
