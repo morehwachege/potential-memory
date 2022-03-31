@@ -2,6 +2,7 @@
 Bonga is Swahili slang for speak/talk.
 Bonga Editor is a JavaScript application that is primarily meant to turn speech into text in real time hence it can be used to write an article or produce transcripts while a podcast is running in the background.
 
+![Screenshot](./public/assets/images/readme.png)
 
 ## Installation
 ***
